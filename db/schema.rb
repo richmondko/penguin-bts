@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321043700) do
+ActiveRecord::Schema.define(version: 20150321074254) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 20150321043700) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "customers", force: :cascade do |t|
+    t.string   "customer_code"
+    t.string   "customer_name"
+    t.string   "address"
+    t.string   "contact_numbers"
+    t.string   "tin_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "item_code"
     t.string   "item_name"
@@ -57,6 +67,21 @@ ActiveRecord::Schema.define(version: 20150321043700) do
     t.string   "liens"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "salesmen", force: :cascade do |t|
+    t.string   "salesman_code"
+    t.string   "salesman_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "supplier_code"
+    t.string   "supplier_name"
+    t.string   "supplier_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
