@@ -14,6 +14,8 @@ ActiveAdmin.register Product do
     column :class_type
     column :unit_cost
     column :liens
+    column :created_at
+    column :updated_at
     actions
   end
 

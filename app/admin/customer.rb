@@ -11,6 +11,8 @@ ActiveAdmin.register Customer do
     column :address
     column :contact_numbers
     column :tin_number
+    column :created_at
+    column :updated_at
     actions
   end
 

@@ -8,6 +8,8 @@ menu parent: "Admin"
     selectable_column
     column :salesman_code
     column :salesman_name
+    column :created_at
+    column :updated_at
     actions
   end
 

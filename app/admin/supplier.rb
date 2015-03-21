@@ -9,6 +9,8 @@ ActiveAdmin.register Supplier do
     column :supplier_code
     column :supplier_name
     column :supplier_type
+    column :created_at
+    column :updated_at
     actions
   end
 
