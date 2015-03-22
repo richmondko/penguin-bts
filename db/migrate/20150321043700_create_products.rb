@@ -8,7 +8,6 @@ class CreateProducts < ActiveRecord::Migration
       t.string :origin
       t.string :class_type
       t.decimal :unit_cost, precision: 8, scale: 2
-      t.string :liens
 
       t.timestamps null: false
     end

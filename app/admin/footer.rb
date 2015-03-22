@@ -7,7 +7,7 @@ module ActiveAdmin
         super :style => "text-align: left;"                                     
 
         div do                                                                   
-          "Penguin BTS by PenguinLabs #{Date.today.year}"                                       
+          "Penguin BTS by PenguinLabs #{Date.today.year}"                                    
         end
       end
 

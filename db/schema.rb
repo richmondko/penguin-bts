@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322024720) do
+ActiveRecord::Schema.define(version: 20150322122449) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 20150322024720) do
     t.datetime "updated_at",                                   null: false
   end
 
+  create_table "liens", force: :cascade do |t|
+    t.integer  "product_id"
+    t.string   "name"
+    t.decimal  "lien_value", precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "liens", ["product_id"], name: "index_liens_on_product_id"
+
   create_table "products", force: :cascade do |t|
     t.string   "item_code"
     t.string   "item_name"
@@ -84,7 +94,6 @@ ActiveRecord::Schema.define(version: 20150322024720) do
     t.string   "origin"
     t.string   "class_type"
     t.decimal  "unit_cost",    precision: 8, scale: 2
-    t.string   "liens"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end

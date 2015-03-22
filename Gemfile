@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #added by RJ
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
+gem 'chosen-rails'
 
 group :production do
   gem 'pg',             '0.17.1'
