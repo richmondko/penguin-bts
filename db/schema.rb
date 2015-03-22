@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321074254) do
+ActiveRecord::Schema.define(version: 20150322024720) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -54,6 +54,26 @@ ActiveRecord::Schema.define(version: 20150321074254) do
     t.string   "tin_number"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "direct_purchases", force: :cascade do |t|
+    t.string   "supplier"
+    t.string   "product"
+    t.integer  "quantity"
+    t.decimal  "unit_cost",           precision: 10, scale: 2
+    t.decimal  "commission_rate",     precision: 10, scale: 2
+    t.decimal  "total_unit_cost",     precision: 10, scale: 2
+    t.decimal  "misc_fees_liens",     precision: 10, scale: 2
+    t.decimal  "misc_fees_insurance", precision: 10, scale: 2
+    t.decimal  "misc_fees_storage",   precision: 10, scale: 2
+    t.decimal  "misc_fees_penalty",   precision: 10, scale: 2
+    t.decimal  "witholding_tax",      precision: 10, scale: 2
+    t.decimal  "commission_amount",   precision: 10, scale: 2
+    t.decimal  "payable_gross",       precision: 10, scale: 2
+    t.decimal  "payable_net",         precision: 10, scale: 2
+    t.string   "reference_number"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "products", force: :cascade do |t|
