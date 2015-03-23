@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150323070930) do
   end
 
   create_table "direct_purchases", force: :cascade do |t|
+    t.date     "purchase_date"
     t.string   "supplier"
     t.string   "product"
     t.integer  "quantity"

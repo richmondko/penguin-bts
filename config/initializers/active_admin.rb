@@ -150,7 +150,7 @@ end
 
   # == Setting a Favicon
   #
-  # config.favicon = 'favicon.ico'
+  config.favicon = 'favicon.ico'
 
   # == Removing Breadcrumbs
   #

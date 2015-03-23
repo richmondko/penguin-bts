@@ -1,6 +1,7 @@
 class CreateDirectPurchases < ActiveRecord::Migration
   def change
     create_table :direct_purchases do |t|
+      t.date :purchase_date
       t.string :supplier
       t.string :product
       t.integer :quantity

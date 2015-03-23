@@ -2,7 +2,7 @@ ActiveAdmin.register DirectPurchase do
 
   menu parent: "Transaction"
 
-  permit_params :supplier, :product, :quantity, :unit_cost, :commission_rate, 
+  permit_params :purchase_date, :supplier, :product, :quantity, :unit_cost, :commission_rate, 
   :total_unit_cost, :witholding_tax, :commission_amount, :payable_gross, :payable_net, :reference_number,
   misc_fees_attributes: [ :id, :direct_purchase_id, :name, :cost, :_destroy ]
 
@@ -10,6 +10,7 @@ ActiveAdmin.register DirectPurchase do
 
   index do
     selectable_column
+    column :purchase_date
     column :supplier
     column :product
     column :quantity
@@ -42,6 +43,7 @@ ActiveAdmin.register DirectPurchase do
   show title: :reference_number do
     panel "Direct Purchase Details" do
       attributes_table_for direct_purchase do
+        row :purchase_date
         row :supplier
         row :product
         row :quantity
@@ -53,6 +55,14 @@ ActiveAdmin.register DirectPurchase do
         end
         row :total_unit_cost do |direct_purchase|
           number_to_currency(direct_purchase.total_unit_cost, unit: "₱")
+        end
+        panel "Misc Fees" do
+          table_for direct_purchase.misc_fees do
+            column :name
+            column :cost do |misc_fee|
+              number_to_currency(misc_fee.cost, unit: "₱")
+            end
+          end
         end
         row :witholding_tax do |direct_purchase|
           number_to_currency(direct_purchase.witholding_tax, unit: "₱")
@@ -71,20 +81,12 @@ ActiveAdmin.register DirectPurchase do
         row :updated_at
       end
     end
-
-    panel "Misc Fees" do
-      table_for direct_purchase.misc_fees do
-        column :name
-        column :cost do |misc_fee|
-          number_to_currency(misc_fee.cost, unit: "₱")
-        end
-      end
-    end
     active_admin_comments
   end
 
   form do |f|
     f.inputs "Direct Purchase Details" do
+      f.input :purchase_date, as: :datepicker
       f.input :supplier, :as => :select, :collection => Supplier.all.map {|supplier| [supplier.supplier_name, supplier.supplier_name]}, :input_html_options => { :class => 'chosen'}
       f.input :product, :as => :select, :collection => Product.all.map {|product| [product.item_name, product.item_name]}, :input_html_options => { :class => 'chosen'}
       f.input :quantity
