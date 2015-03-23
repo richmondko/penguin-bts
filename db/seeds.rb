@@ -1,7 +1,7 @@
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
 # generate products
-20.times do |n|
+100.times do |n|
 
   item_code  = Faker::Code.ean
   item_name = Faker::Commerce.product_name
@@ -27,7 +27,7 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 end
 
 # generate customers
-20.times do |n|
+100.times do |n|
 
   customer_code  = Faker::Code.ean
   customer_name = Faker::Name.name
@@ -45,7 +45,7 @@ end
 end
 
 # generate suppliers
-20.times do |n|
+100.times do |n|
 
   supplier_code  = Faker::Code.ean
   supplier_name = Faker::Company.name
@@ -59,7 +59,7 @@ end
 end
 
 # generate salesman
-20.times do |n|
+100.times do |n|
 
   salesman_code  = Faker::Code.ean
   salesman_name = Faker::Name.name
