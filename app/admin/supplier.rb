@@ -4,14 +4,28 @@ ActiveAdmin.register Supplier do
 
   permit_params :supplier_code, :supplier_name, :supplier_type
 
+  config.sort_order = "updated_at_desc"
+
   index do
     selectable_column
     column :supplier_code
     column :supplier_name
     column :supplier_type
-    column :created_at
     column :updated_at
-    actions
+    actions dropdown: true
+  end
+
+  show title: :supplier_name do
+    panel "Supplier Details" do
+      attributes_table_for supplier do
+        row  :supplier_code
+        row  :supplier_name
+        row  :supplier_type
+        row  :created_at
+        row  :updated_at
+      end
+    end
+    active_admin_comments
   end
 
   form do |f|

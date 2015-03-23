@@ -1,7 +1,7 @@
 ActiveAdmin.register AdminUser do
 
   menu parent: "Admin"
-
+  
   permit_params :email, :password, :password_confirmation
 
   index do
@@ -10,7 +10,7 @@ ActiveAdmin.register AdminUser do
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
-    actions
+    actions dropdown: true
   end
 
   filter :email

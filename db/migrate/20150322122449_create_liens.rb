@@ -3,7 +3,7 @@ class CreateLiens < ActiveRecord::Migration
     create_table :liens do |t|
     	t.integer :product_id
       t.string :name
-      t.decimal :lien_value, precision: 10, scale: 2
+      t.decimal :cost, precision: 10, scale: 2
    
       t.timestamps null: false
     end

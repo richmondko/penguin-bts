@@ -4,6 +4,8 @@ ActiveAdmin.register Customer do
 
   permit_params :customer_code, :customer_name, :address, :contact_numbers, :tin_number
 
+  config.sort_order = "updated_at_desc"
+
   index do
     selectable_column
     column :customer_code
@@ -11,9 +13,23 @@ ActiveAdmin.register Customer do
     column :address
     column :contact_numbers
     column :tin_number
-    column :created_at
     column :updated_at
-    actions
+    actions dropdown: true
+  end
+
+  show title: :customer_name do
+    panel "Customer Details" do
+      attributes_table_for customer do
+        row  :customer_code
+        row  :customer_name
+        row  :address
+        row  :contact_numbers
+        row  :tin_number
+        row  :created_at
+        row  :updated_at
+      end
+    end
+    active_admin_comments
   end
 
   form do |f|

@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 gem 'chosen-rails'
+gem 'faker',            '1.4.2'
 
 group :production do
   gem 'pg',             '0.17.1'

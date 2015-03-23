@@ -1,4 +1,12 @@
 ActiveAdmin.setup do |config|
+
+config.namespace :admin do |admin|
+  admin.build_menu :default do |menu|
+    menu.add label: "Admin", priority: 2
+    menu.add label: "Transaction", priority: 3
+  end
+end
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout

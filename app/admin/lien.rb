@@ -1,5 +1,7 @@
 ActiveAdmin.register Lien do
 
-permit_params :name, :lien_value
+	menu false
+
+	permit_params :name, :lien_value
 
 end
