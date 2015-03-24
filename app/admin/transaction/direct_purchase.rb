@@ -83,18 +83,17 @@ ActiveAdmin.register DirectPurchase do
     end
     active_admin_comments
   end
-
+  
   form do |f|
     f.inputs "Direct Purchase Details" do
       f.input :purchase_date, as: :datepicker
       f.input :supplier, :as => :select, :collection => Supplier.all.map {|supplier| [supplier.supplier_name, supplier.supplier_name]}, :input_html_options => { :class => 'chosen'}
-      f.input :product, :as => :select, :collection => Product.all.map {|product| [product.item_name, product.item_name]}, :input_html_options => { :class => 'chosen'}
+      f.input :product, :as => :select, :collection => Product.all.map {|product| [product.item_name, product.item_name, product.unit_cost]}, :input_html_options => { :class => 'chosen'}
       f.input :quantity
       f.input :unit_cost
       #:input_html => {:value => 0}
       f.input :commission_rate
-      f.input :total_unit_cost 
-      #, :input_html => { :readonly => true }
+      f.input :total_unit_cost, :input_html => { :readonly => true }
       f.inputs do
         f.has_many :misc_fees, heading: 'Misc Fees', allow_destroy: true, new_record: "Add Misc Fee" do |misc_fee|
           misc_fee.input :name
@@ -102,9 +101,9 @@ ActiveAdmin.register DirectPurchase do
         end
       end
       f.input :witholding_tax
-      f.input :commission_amount
-      f.input :payable_gross
-      f.input :payable_net
+      f.input :commission_amount, :input_html => { :readonly => true }
+      f.input :payable_gross, :input_html => { :readonly => true }
+      f.input :payable_net, :input_html => { :readonly => true }
       f.input :reference_number
     end
     f.actions
