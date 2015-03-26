@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   root to: "admin/dashboard#index"
 
-  post 'admin/direct_purchases/update_unit_cost' => 'admin#direct_purchase#update_unit_cost'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

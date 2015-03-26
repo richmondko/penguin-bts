@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323070930) do
+ActiveRecord::Schema.define(version: 20150325053522) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 20150323070930) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "bill_of_lading_and_vans", force: :cascade do |t|
+    t.date     "bl_date"
+    t.string   "supplier"
+    t.string   "shipping_line"
+    t.string   "vessel"
+    t.string   "voyage"
+    t.string   "bl_number"
+    t.string   "van_number"
+    t.string   "product"
+    t.string   "reference_number"
+    t.integer  "quantity"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string   "customer_code"
     t.string   "customer_name"
@@ -64,6 +79,10 @@ ActiveRecord::Schema.define(version: 20150323070930) do
     t.decimal  "unit_cost",         precision: 10, scale: 2
     t.decimal  "commission_rate",   precision: 10, scale: 2
     t.decimal  "total_unit_cost",   precision: 10, scale: 2
+    t.decimal  "liens_cost",        precision: 10, scale: 2
+    t.decimal  "insurance_cost",    precision: 10, scale: 2
+    t.decimal  "storage_cost",      precision: 10, scale: 2
+    t.decimal  "penalty_cost",      precision: 10, scale: 2
     t.decimal  "witholding_tax",    precision: 10, scale: 2
     t.decimal  "commission_amount", precision: 10, scale: 2
     t.decimal  "payable_gross",     precision: 10, scale: 2
@@ -82,16 +101,6 @@ ActiveRecord::Schema.define(version: 20150323070930) do
   end
 
   add_index "liens", ["product_id"], name: "index_liens_on_product_id"
-
-  create_table "misc_fees", force: :cascade do |t|
-    t.integer  "direct_purchase_id"
-    t.string   "name"
-    t.decimal  "cost",               precision: 10, scale: 2
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-  end
-
-  add_index "misc_fees", ["direct_purchase_id"], name: "index_misc_fees_on_direct_purchase_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "item_code"

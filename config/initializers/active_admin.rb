@@ -173,7 +173,6 @@ end
   #
   # To load a javascript file:
   config.register_javascript 'direct_purchase.js'
-
   # == CSV options
   #
   # Set the CSV builder separator

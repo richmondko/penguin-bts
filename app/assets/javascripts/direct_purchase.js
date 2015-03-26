@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
 	//auto-fill unit cost of product in direct purchase
@@ -13,7 +12,7 @@ $(document).ready(function(){
 				commission_rate = parseFloat($("#direct_purchase_commission_rate").val()),
 				total_unit_cost = unit_cost + commission_rate;
 
-  	$("#direct_purchase_total_unit_cost").val(total_unit_cost);
+  	$("#direct_purchase_total_unit_cost").val(total_unit_cost)
 	});
 
 	//compute for total unit cost and commission amount when commission rate is changed
@@ -77,15 +76,6 @@ $(document).ready(function(){
 	});
 
   //compute for payable gross when payable gross is hovered
-	$("#direct_purchase_payable_gross").focus(function() {
-		var quantity = parseFloat($("#direct_purchase_quantity").val()),
-				total_unit_cost = parseFloat($("#direct_purchase_total_unit_cost").val()),
-				payable_gross = quantity * total_unit_cost;
-
-  	$("#direct_purchase_payable_gross").val(payable_gross);
-	});
-
-	//compute for payable gross when payable gross is hovered
 	$("#direct_purchase_payable_gross").mouseenter(function() {
 		var quantity = parseFloat($("#direct_purchase_quantity").val()),
 				total_unit_cost = parseFloat($("#direct_purchase_total_unit_cost").val()),
@@ -94,13 +84,90 @@ $(document).ready(function(){
   	$("#direct_purchase_payable_gross").val(payable_gross);
 	});
 
+	//compute for payable gross when payable gross is focused
+	$("#direct_purchase_payable_gross").focus(function() {
+		var quantity = parseFloat($("#direct_purchase_quantity").val()),
+				total_unit_cost = parseFloat($("#direct_purchase_total_unit_cost").val()),
+				payable_gross = quantity * total_unit_cost;
+
+  	$("#direct_purchase_payable_gross").val(payable_gross);
+	});
+
+	//compute for payable net when payable net is hovered
 	$("#direct_purchase_payable_net").mouseenter(function() {
 		var witholding_tax = parseFloat($("#direct_purchase_witholding_tax").val()),
-				misc_fees = parseFloat($("#direct_purchase_misc_fees_attributes_0_cost").val()) + parseFloat($("#direct_purchase_misc_fees_attributes_1_cost").val()) + 
-				parseFloat($("#direct_purchase_misc_fees_attributes_2_cost").val()) + parseFloat($("#direct_purchase_misc_fees_attributes_3_cost").val()),
-				payable_net = witholding_tax + misc_fees;
-				alert(misc_fees);
+				misc_fees = parseFloat($("#direct_purchase_liens_cost").val()) + parseFloat($("#direct_purchase_storage_cost").val()) + 
+				parseFloat($("#direct_purchase_insurance_cost").val()) + parseFloat($("#direct_purchase_penalty_cost").val()),
+				payable_gross = parseFloat($("#direct_purchase_payable_gross").val())
+				payable_net = payable_gross - (witholding_tax + misc_fees);
 				
   	$("#direct_purchase_payable_net").val(payable_net);
   });
+
+  //compute for payable net when payable net is focused
+	$("#direct_purchase_payable_net").focus(function() {
+		var witholding_tax = parseFloat($("#direct_purchase_witholding_tax").val()),
+				misc_fees = parseFloat($("#direct_purchase_liens_cost").val()) + parseFloat($("#direct_purchase_storage_cost").val()) + 
+				parseFloat($("#direct_purchase_insurance_cost").val()) + parseFloat($("#direct_purchase_penalty_cost").val()),
+				payable_gross = parseFloat($("#direct_purchase_payable_gross").val())
+				payable_net = payable_gross - (witholding_tax + misc_fees);
+				
+  	$("#direct_purchase_payable_net").val(payable_net);
+  });
+
+	// compute for payable net when witholding tax is changed
+	$("#direct_purchase_witholding_tax").change(function() {
+		var witholding_tax = parseFloat($("#direct_purchase_witholding_tax").val()),
+				misc_fees = parseFloat($("#direct_purchase_liens_cost").val()) + parseFloat($("#direct_purchase_storage_cost").val()) + 
+				parseFloat($("#direct_purchase_insurance_cost").val()) + parseFloat($("#direct_purchase_penalty_cost").val()),
+				payable_gross = parseFloat($("#direct_purchase_payable_gross").val())
+				payable_net = payable_gross - (witholding_tax + misc_fees);
+				
+  	$("#direct_purchase_payable_net").val(payable_net);
+  });
+
+  // compute for payable net when liens cost is changed
+	$("#direct_purchase_liens_cost").change(function() {
+		var witholding_tax = parseFloat($("#direct_purchase_witholding_tax").val()),
+				misc_fees = parseFloat($("#direct_purchase_liens_cost").val()) + parseFloat($("#direct_purchase_storage_cost").val()) + 
+				parseFloat($("#direct_purchase_insurance_cost").val()) + parseFloat($("#direct_purchase_penalty_cost").val()),
+				payable_gross = parseFloat($("#direct_purchase_payable_gross").val())
+				payable_net = payable_gross - (witholding_tax + misc_fees);
+				
+  	$("#direct_purchase_payable_net").val(payable_net);
+  });
+
+  // compute for payable net when storage cost is changed
+	$("#direct_purchase_storage_cost").change(function() {
+		var witholding_tax = parseFloat($("#direct_purchase_witholding_tax").val()),
+				misc_fees = parseFloat($("#direct_purchase_liens_cost").val()) + parseFloat($("#direct_purchase_storage_cost").val()) + 
+				parseFloat($("#direct_purchase_insurance_cost").val()) + parseFloat($("#direct_purchase_penalty_cost").val()),
+				payable_gross = parseFloat($("#direct_purchase_payable_gross").val())
+				payable_net = payable_gross - (witholding_tax + misc_fees);
+				
+  	$("#direct_purchase_payable_net").val(payable_net);
+  });
+
+  // compute for payable net when insurance cost is changed
+	$("#direct_purchase_insurance_cost").change(function() {
+		var witholding_tax = parseFloat($("#direct_purchase_witholding_tax").val()),
+				misc_fees = parseFloat($("#direct_purchase_liens_cost").val()) + parseFloat($("#direct_purchase_storage_cost").val()) + 
+				parseFloat($("#direct_purchase_insurance_cost").val()) + parseFloat($("#direct_purchase_penalty_cost").val()),
+				payable_gross = parseFloat($("#direct_purchase_payable_gross").val())
+				payable_net = payable_gross - (witholding_tax + misc_fees);
+				
+  	$("#direct_purchase_payable_net").val(payable_net);
+  });
+
+  // compute for payable net when penalty cost is changed
+	$("#direct_purchase_penalty_cost").change(function() {
+		var witholding_tax = parseFloat($("#direct_purchase_witholding_tax").val()),
+				misc_fees = parseFloat($("#direct_purchase_liens_cost").val()) + parseFloat($("#direct_purchase_storage_cost").val()) + 
+				parseFloat($("#direct_purchase_insurance_cost").val()) + parseFloat($("#direct_purchase_penalty_cost").val()),
+				payable_gross = parseFloat($("#direct_purchase_payable_gross").val())
+				payable_net = payable_gross - (witholding_tax + misc_fees);
+				
+  	$("#direct_purchase_payable_net").val(payable_net);
+  });
+
 }); 

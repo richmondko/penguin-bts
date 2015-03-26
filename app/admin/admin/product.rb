@@ -54,11 +54,11 @@ ActiveAdmin.register Product do
     f.inputs "Product Details" do
       f.input :item_code
       f.input :item_name
-      f.input :item_type, :as => :radio, :collection => ["Refine", "Raw", "Wash", "Misc"]
+      f.input :item_type, :as => :radio, :input_html => { :checked => true }, :collection => ["Refine", "Raw", "Wash", "Misc"]
       f.input :central_name
       f.input :origin
       f.input :class_type
-      f.input :unit_cost
+      f.input :unit_cost, :input_html => { :value => 0 }
       f.inputs do
         f.has_many :liens, heading: 'Liens', allow_destroy: true do |lien|
           lien.input :name
